@@ -46,8 +46,7 @@ const xmlbody = {
     Blocks: []
 }
 
-async function setDocumentState() {
-
+async function setBlockRef() {
 }
 async function converJson2Xml(inputPath, outputPath) {
     json = await fs.readJsonSync(inputPath)
@@ -62,16 +61,11 @@ async function converJson2Xml(inputPath, outputPath) {
     //console.log(data2convert)
     var result = [];
     for (var i in data2convert) {
-        await result.push({ [i]: data2convert[i] })
+        if (data2convert[i].content !== undefined) {
+            await result.push({ [i]: data2convert[i] })
+        }
     }
-    console.log(result[1]['Date'])
-    try {
-        r = await result.filter((index) => index === 1)
-        console.log(r)
-    } catch (err) {
-
-    }
-
+    console.log(xmlbody)
 
     const xml = await json2xml(data2convert, {
         compact: true, spaces: 4
