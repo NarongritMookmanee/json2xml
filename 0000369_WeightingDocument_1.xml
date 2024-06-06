@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<form:Documents xmlns:form="https://eastasia.api.cognitive.microsoft.com/Export/FormData.xsd" xmlns:addData="https://eastasia.api.cognitive.microsoft.com/Export/AdditionalFormData.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <_WeightingDocument:_WeightingDocument addData:DocumentState="Correct" addData:ImagePath="0000369_WeightingDocument_1.json" xmlns:_WeightingDocument="https://eastasia.api.cognitive.microsoft.com/Export/WeightingDocument.xsd">
+    <_Product addData:BlockRef="0001" addData:SuspiciousSymbols="000">AMM</_Product>
+    <_Date addData:BlockRef="0002" addData:SuspiciousSymbols="000000000">10/8/2023</_Date>
+    <_Weight addData:BlockRef="0003" addData:SuspiciousSymbols="00000">3,080</_Weight>
+
+    <addData:AdditionalInfo>
+      <addData:BlocksInfo>
+        <addData:Blocks Id="0001">
+          <addData:Block PageIndex="1">
+            <addData:Rect Left="821" Right="877" Top="400" Bottom="438"/>
+          </addData:Block>
+        </addData:Blocks>
+
+        <addData:Blocks Id="0002">
+          <addData:Block PageIndex="1">
+            <addData:Rect Left="313" Right="430" Top="340" Bottom="373"/>
+          </addData:Block>
+        </addData:Blocks>
+
+        <addData:Blocks Id="0003">
+          <addData:Block PageIndex="1">
+            <addData:Rect Left="877" Right="958" Top="1129" Bottom="1164"/>
+          </addData:Block>
+        </addData:Blocks>
+
+      </addData:BlocksInfo>
+    </addData:AdditionalInfo>
+  </_WeightingDocument:_WeightingDocument>
+</form:Documents>

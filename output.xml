@@ -1,0 +1,265 @@
+<Product>
+    <type>string</type>
+    <valueString>AMM</valueString>
+    <content>AMM</content>
+    <boundingRegions>
+        <pageNumber>1</pageNumber>
+        <polygon>4.1089</polygon>
+        <polygon>2.0025</polygon>
+        <polygon>4.3872</polygon>
+        <polygon>2.0047</polygon>
+        <polygon>4.3857</polygon>
+        <polygon>2.1938</polygon>
+        <polygon>4.1074</polygon>
+        <polygon>2.1916</polygon>
+    </boundingRegions>
+    <confidence>0.994</confidence>
+    <spans>
+        <offset>268</offset>
+        <length>3</length>
+    </spans>
+</Product>
+<Date>
+    <type>date</type>
+    <valueDate>2023-08-10</valueDate>
+    <content>10/8/2023</content>
+    <boundingRegions>
+        <pageNumber>1</pageNumber>
+        <polygon>1.5688</polygon>
+        <polygon>1.7014</polygon>
+        <polygon>2.1539</polygon>
+        <polygon>1.7036</polygon>
+        <polygon>2.1533</polygon>
+        <polygon>1.8662</polygon>
+        <polygon>1.5682</polygon>
+        <polygon>1.864</polygon>
+    </boundingRegions>
+    <confidence>0.994</confidence>
+    <spans>
+        <offset>154</offset>
+        <length>9</length>
+    </spans>
+</Date>
+<Weight>
+    <type>number</type>
+    <content>3,080</content>
+    <boundingRegions>
+        <pageNumber>1</pageNumber>
+        <polygon>4.3857</polygon>
+        <polygon>5.6492</polygon>
+        <polygon>4.7944</polygon>
+        <polygon>5.6492</polygon>
+        <polygon>4.7944</polygon>
+        <polygon>5.8207</polygon>
+        <polygon>4.3857</polygon>
+        <polygon>5.8207</polygon>
+    </boundingRegions>
+    <confidence>0.994</confidence>
+    <spans>
+        <offset>714</offset>
+        <length>5</length>
+    </spans>
+</Weight>
+<InvoiceGC_Item>
+    <type>array</type>
+</InvoiceGC_Item>
+<Product_Name_MMA>
+    <type>string</type>
+    <confidence>0.992</confidence>
+</Product_Name_MMA>
+<Quantity_As_Per_BL2>
+    <type>number</type>
+    <confidence>0.989</confidence>
+</Quantity_As_Per_BL2>
+<Quantity_As_Per_BL1>
+    <type>number</type>
+    <confidence>0.988</confidence>
+</Quantity_As_Per_BL1>
+<Document_NO>
+    <type>number</type>
+    <confidence>0.989</confidence>
+</Document_NO>
+<Tank_B_TOV_AN>
+    <type>number</type>
+    <confidence>0.99</confidence>
+</Tank_B_TOV_AN>
+<Tank_A_TOV_AN>
+    <type>number</type>
+    <confidence>0.99</confidence>
+</Tank_A_TOV_AN>
+<GRT>
+    <type>number</type>
+    <confidence>0.989</confidence>
+</GRT>
+<Tank_A_AN>
+    <type>string</type>
+    <confidence>0.99</confidence>
+</Tank_A_AN>
+<Start_Read_Meter>
+    <type>integer</type>
+    <confidence>0.989</confidence>
+</Start_Read_Meter>
+<Tank_A_Temp_AN>
+    <type>number</type>
+    <confidence>0.991</confidence>
+</Tank_A_Temp_AN>
+<ON_PEAK_Quantity>
+    <type>number</type>
+    <confidence>0.992</confidence>
+</ON_PEAK_Quantity>
+<Berth_No>
+    <type>number</type>
+    <confidence>0.993</confidence>
+</Berth_No>
+<Total_Quantity>
+    <type>integer</type>
+    <confidence>0.991</confidence>
+</Total_Quantity>
+<Quantity_Date>
+    <type>string</type>
+    <confidence>0.992</confidence>
+</Quantity_Date>
+<Berth>
+    <type>string</type>
+    <confidence>0.989</confidence>
+</Berth>
+<Name_Of_Contact_Point>
+    <type>string</type>
+    <confidence>0.989</confidence>
+</Name_Of_Contact_Point>
+<Vessel_Unberth_Time>
+    <type>time</type>
+    <confidence>0.988</confidence>
+</Vessel_Unberth_Time>
+<Tank_A_MMA>
+    <type>string</type>
+    <confidence>0.99</confidence>
+</Tank_A_MMA>
+<First_Line_Ashore_Date>
+    <type>date</type>
+    <confidence>0.987</confidence>
+</First_Line_Ashore_Date>
+<Loading_Type>
+    <type>string</type>
+    <confidence>0.986</confidence>
+</Loading_Type>
+<Tank_B_Temp_AN>
+    <type>number</type>
+    <confidence>0.991</confidence>
+</Tank_B_Temp_AN>
+<Type_Of_Cargo>
+    <type>string</type>
+    <confidence>0.989</confidence>
+</Type_Of_Cargo>
+<Product_Name_AN>
+    <type>string</type>
+    <confidence>0.989</confidence>
+</Product_Name_AN>
+<Date_Of_Berthing>
+    <type>date</type>
+    <confidence>0.989</confidence>
+</Date_Of_Berthing>
+<Total_Amount>
+    <type>number</type>
+    <confidence>0.992</confidence>
+</Total_Amount>
+<Phone_Number>
+    <type>string</type>
+    <confidence>0.989</confidence>
+</Phone_Number>
+<Tank_A_TOV_MMA>
+    <type>number</type>
+    <confidence>0.99</confidence>
+</Tank_A_TOV_MMA>
+<Product3>
+    <type>string</type>
+    <confidence>0.993</confidence>
+</Product3>
+<Stop_Read_Meter>
+    <type>integer</type>
+    <confidence>0.989</confidence>
+</Stop_Read_Meter>
+<Name_Of_Vessel>
+    <type>string</type>
+    <confidence>0.986</confidence>
+</Name_Of_Vessel>
+<Due_Date>
+    <type>date</type>
+    <confidence>0.99</confidence>
+</Due_Date>
+<Vessel_Unberth_Date>
+    <type>date</type>
+    <confidence>0.985</confidence>
+</Vessel_Unberth_Date>
+<Quantity>
+    <type>number</type>
+    <confidence>0.989</confidence>
+</Quantity>
+<Fax_Number>
+    <type>string</type>
+    <confidence>0.989</confidence>
+</Fax_Number>
+<Product1>
+    <type>string</type>
+    <confidence>0.989</confidence>
+</Product1>
+<Tank_B_Temp_MMA>
+    <type>number</type>
+    <confidence>0.992</confidence>
+</Tank_B_Temp_MMA>
+<Tank_A_Temp_MMA>
+    <type>number</type>
+    <confidence>0.992</confidence>
+</Tank_A_Temp_MMA>
+<Total_Berthing_Time>
+    <type>time</type>
+    <confidence>0.989</confidence>
+</Total_Berthing_Time>
+<Tank_B_MMA>
+    <type>string</type>
+    <confidence>0.99</confidence>
+</Tank_B_MMA>
+<Tax_ID>
+    <type>string</type>
+    <confidence>0.989</confidence>
+</Tax_ID>
+<Quantity_MT>
+    <type>string</type>
+    <confidence>0.99</confidence>
+</Quantity_MT>
+<Tank_B_TOV_MMA>
+    <type>number</type>
+    <confidence>0.99</confidence>
+</Tank_B_TOV_MMA>
+<First_Line_Ashore_Time>
+    <type>time</type>
+    <confidence>0.987</confidence>
+</First_Line_Ashore_Time>
+<Quantity_As_Per_BL3>
+    <type>number</type>
+    <confidence>0.989</confidence>
+</Quantity_As_Per_BL3>
+<Address>
+    <type>string</type>
+    <confidence>0.994</confidence>
+</Address>
+<Tank_B_AN>
+    <type>string</type>
+    <confidence>0.99</confidence>
+</Tank_B_AN>
+<Quantity_NM3>
+    <type>number</type>
+    <confidence>0.989</confidence>
+</Quantity_NM3>
+<OFF_PEAK_Quantity>
+    <type>number</type>
+    <confidence>0.992</confidence>
+</OFF_PEAK_Quantity>
+<Print_Date>
+    <type>date</type>
+    <confidence>0.99</confidence>
+</Print_Date>
+<Product2>
+    <type>string</type>
+    <confidence>0.991</confidence>
+</Product2>
