@@ -90,7 +90,7 @@ async function converJson2Xml(inputPath, outputPath, dpi = 200) {
     })
     await fs.outputFile(outputPath, fullxml)
 }
-/* Excample 
+/* Example 
 converJson2Xml(
     './0000376_MonthlyReport_1.json',
     './output.xml'
