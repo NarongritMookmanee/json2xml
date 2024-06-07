@@ -90,10 +90,15 @@ async function converJson2Xml(inputPath, outputPath, dpi = 200) {
     })
     await fs.outputFile(outputPath, fullxml)
 }
-/* Example 
-converJson2Xml(
-    './0000376_MonthlyReport_1.json',
-    './output.xml'
-    )
+/* 
+Example
+
+converJson2Xml("./0000376_MonthlyReport_1.json", "./output.xml")
+
+                        OR
+
+converJson2Xml("./0000376_MonthlyReport_1.json", "./output.xml", 500)
+                                                                 ^^^
+                                                                 configured DPI resolution gainer (default is 200)
 */
 export default converJson2Xml
