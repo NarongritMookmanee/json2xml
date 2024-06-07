@@ -31,7 +31,7 @@ const xmlbody = {
     BlockInfo_endTag: `</addData:BlocksInfo>`,
     Blocks: []
 }
-async function converJson2Xml(inputPath, outputPath, dpi = 200) {
+async function convertJson2Xml(inputPath, outputPath, dpi = 200) {
     var json = undefined
     var data2convert = undefined
     const filename = {
@@ -101,4 +101,4 @@ converJson2Xml("./0000376_MonthlyReport_1.json", "./output.xml", 500)
                                                                  ^^^
                                                                  configured DPI resolution gainer (default is 200)
 */
-export default converJson2Xml
+export default convertJson2Xml
