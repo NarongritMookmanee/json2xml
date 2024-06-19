@@ -45,60 +45,110 @@ async function convertJson2Xml(inputPath, outputPath, dpi = 200) {
     var resultJson = []
     var resultJsonHeaderField = []
     var fullxml = undefined
-    json = await fs.readJsonSync(inputPath)
-    data2convert = json.analyzeResult.documents[0].fields
-    filename.basename = path.basename(inputPath)
-    filename.splitBasename = filename.basename.split('_')
-    filename.batch_id = filename.splitBasename[0]
-    filename.docname = filename.splitBasename[1]
-    filename.runningNo = filename.splitBasename[2].split(`.`)[0]
-    filename.type = filename.splitBasename[2].split(`.`)[1]
-    for (var i in data2convert) {
-        if (data2convert[i].content !== undefined) {
-            resultJson.push({ [i]: data2convert[i] })
-            resultJsonHeaderField.push(i)
-        }
+    const clearCache = () => {
+        return new Promise((resolve) => {
+            json = undefined
+            data2convert = undefined
+            filename.basename = undefined
+            filename.splitBasename = []
+            filename.batch_id = undefined
+            filename.docname = undefined
+            filename.runningNo = undefined
+            filename.type = undefined
+            resultJson = []
+            resultJsonHeaderField = []
+            fullxml = undefined
+            xmlbody.Header = `<?xml version="1.0" encoding="UTF-8"?>`
+            xmlbody.FormDocument = `<form:Documents xmlns:form="https://eastasia.api.cognitive.microsoft.com/Export/FormData.xsd" xmlns:addData="https://eastasia.api.cognitive.microsoft.com/Export/AdditionalFormData.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">`
+            xmlbody.FormDocument_endTag = `</form:Documents>`
+            xmlbody.DocumentState = undefined
+            xmlbody.DocumentState_endTag = undefined
+            xmlbody.BlockRef = []
+            xmlbody.AdditionalInfo = `<addData:AdditionalInfo>`
+            xmlbody.AdditionalInfo_endTag = `</addData:AdditionalInfo>`
+            xmlbody.BlockInfo = `<addData:BlocksInfo>`
+            xmlbody.BlockInfo_endTag = `</addData:BlocksInfo>`
+            xmlbody.Blocks = []
+            resolve('cache have cleared')
+        })
     }
-    xmlbody.DocumentState = setDocumentState(filename.docname, filename.basename).DocumentState
-    xmlbody.DocumentState_endTag = setDocumentState(filename.docname, filename.basename).DocumentState_endTag
-    resultJson.forEach((element, index) => {
-        xmlbody.BlockRef.push(setBlockRef_template(
-            resultJsonHeaderField[index],
-            '0000'.concat(index + 1).slice('0000'.concat(index + 1).length - 4),
-            element[resultJsonHeaderField[index]].content
-        ))
-        xmlbody.Blocks.push(setBlockInfo_template(
-            '0000'.concat(index + 1).slice('0000'.concat(index + 1).length - 4),
-            element[resultJsonHeaderField[index]].boundingRegions[0].pageNumber,
-            Math.floor(element[resultJsonHeaderField[index]].boundingRegions[0].polygon[0] * dpi),
-            Math.floor(element[resultJsonHeaderField[index]].boundingRegions[0].polygon[2] * dpi),
-            Math.floor(element[resultJsonHeaderField[index]].boundingRegions[0].polygon[1] * dpi),
-            Math.floor(element[resultJsonHeaderField[index]].boundingRegions[0].polygon[5] * dpi)
-        ))
+    return new Promise((resolve, reject) => {
+        try {
+            json = fs.readJsonSync(inputPath)
+            data2convert = json.analyzeResult.documents[0].fields
+            filename.basename = path.basename(inputPath)
+            filename.splitBasename = filename.basename.split('_')
+            filename.batch_id = filename.splitBasename[0]
+            filename.docname = filename.splitBasename[1]
+            filename.runningNo = filename.splitBasename[2].split(`.`)[0]
+            filename.type = filename.splitBasename[2].split(`.`)[1]
+            for (var i in data2convert) {
+                if (data2convert[i].content !== undefined) {
+                    resultJson.push({ [i]: data2convert[i] })
+                    resultJsonHeaderField.push(i)
+                }
+            }
+            xmlbody.DocumentState = setDocumentState(filename.docname, filename.basename).DocumentState
+            xmlbody.DocumentState_endTag = setDocumentState(filename.docname, filename.basename).DocumentState_endTag
+            resultJson.forEach((element, index) => {
+                xmlbody.BlockRef.push(setBlockRef_template(
+                    resultJsonHeaderField[index],
+                    '0000'.concat(index + 1).slice('0000'.concat(index + 1).length - 4),
+                    element[resultJsonHeaderField[index]].content
+                ))
+                xmlbody.Blocks.push(setBlockInfo_template(
+                    '0000'.concat(index + 1).slice('0000'.concat(index + 1).length - 4),
+                    element[resultJsonHeaderField[index]].boundingRegions[0].pageNumber,
+                    Math.floor(element[resultJsonHeaderField[index]].boundingRegions[0].polygon[0] * dpi),
+                    Math.floor(element[resultJsonHeaderField[index]].boundingRegions[0].polygon[2] * dpi),
+                    Math.floor(element[resultJsonHeaderField[index]].boundingRegions[0].polygon[1] * dpi),
+                    Math.floor(element[resultJsonHeaderField[index]].boundingRegions[0].polygon[5] * dpi)
+                ))
+            })
+            fullxml = xmlbody.Header + xmlbody.FormDocument + xmlbody.DocumentState
+            xmlbody.BlockRef.forEach((blockRef) => {
+                fullxml = fullxml + blockRef
+            })
+            fullxml = fullxml + xmlbody.AdditionalInfo + xmlbody.BlockInfo
+            xmlbody.Blocks.forEach((blocks) => {
+                fullxml = fullxml + blocks
+            })
+            fullxml = fullxml + xmlbody.BlockInfo_endTag + xmlbody.AdditionalInfo_endTag + xmlbody.DocumentState_endTag + xmlbody.FormDocument_endTag
+            const xml = json2xml(data2convert, {
+                compact: true, spaces: 4
+            })
+            fs.outputFile(outputPath, fullxml)
+            resolve({
+                status: 'exported',
+                inputDir: inputPath,
+                outputDir: outputPath,
+            })
+            clearCache().then((res) => { console.log(res) })
+        }
+        catch (error) {
+            reject({
+                status: 'error',
+                detail: error
+            })
+        }
     })
-    fullxml = await xmlbody.Header + xmlbody.FormDocument + xmlbody.DocumentState
-    xmlbody.BlockRef.forEach((blockRef) => {
-        fullxml = fullxml + blockRef
-    })
-    fullxml = await fullxml + xmlbody.AdditionalInfo + xmlbody.BlockInfo
-    xmlbody.Blocks.forEach((blocks) => {
-        fullxml = fullxml + blocks
-    })
-    fullxml = await fullxml + xmlbody.BlockInfo_endTag + xmlbody.AdditionalInfo_endTag + xmlbody.DocumentState_endTag + xmlbody.FormDocument_endTag
-    const xml = await json2xml(data2convert, {
-        compact: true, spaces: 4
-    })
-    await fs.outputFile(outputPath, fullxml)
 }
-/* 
-Example
+/*
+================================================= Usage =================================================
 
-converJson2Xml("./0000376_MonthlyReport_1.json", "./output.xml")
+import json2xml from "./json-xml.js"
+
+json2xml("./0000376_MonthlyReport_1.json", "./output.xml")
+    .then(response => console.log(response))
+    .catch(error => console.log(error))
 
                         OR
 
-converJson2Xml("./0000376_MonthlyReport_1.json", "./output.xml", 500)
-                                                                 ^^^
-                                                                 configured DPI resolution gainer (default is 200)
+json2xml("./0000376_MonthlyReport_1.json", "./output.xml", 500).then(response => console.log(response))
+    .then(response => console.log(response))               ^|^
+    .catch(error => console.log(error))                     |- configured DPI resolution gainer (default is 200)                              
+                                                                 
+
+=========================================================================================================
 */
 export default convertJson2Xml
