@@ -81,7 +81,6 @@ async function convertJson2Xml(inputPath, outputPath, dpi = 200) {
                 data2convert = json.analyzeResult.paragraphs
             }
             data2convert = JSON.stringify(data2convert).replaceAll("&", "&amp;").replaceAll(">", "&gt;").replaceAll("<", "&lt;")
-            console.log(data2convert)
             data2convert = JSON.parse(data2convert)
             filename.basename = path.basename(inputPath)
             filename.splitBasename = filename.basename.split('_')
