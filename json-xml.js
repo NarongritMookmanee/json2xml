@@ -1,4 +1,3 @@
-import { json2xml } from "xml-js"
 import fs from 'fs-extra'
 import path from 'path'
 
@@ -75,7 +74,15 @@ async function convertJson2Xml(inputPath, outputPath, dpi = 200) {
     return new Promise((resolve, reject) => {
         try {
             json = fs.readJsonSync(inputPath)
-            data2convert = json.analyzeResult.documents[0].fields
+            try {
+                data2convert = json.analyzeResult.documents[0].fields
+            }
+            catch (error) {
+                data2convert = json.analyzeResult.paragraphs
+            }
+            data2convert = JSON.stringify(data2convert).replaceAll("&", "&amp;").replaceAll(">", "&gt;").replaceAll("<", "&lt;")
+            console.log(data2convert)
+            data2convert = JSON.parse(data2convert)
             filename.basename = path.basename(inputPath)
             filename.splitBasename = filename.basename.split('_')
             filename.batch_id = filename.splitBasename[0]
@@ -114,9 +121,6 @@ async function convertJson2Xml(inputPath, outputPath, dpi = 200) {
                 fullxml = fullxml + blocks
             })
             fullxml = fullxml + xmlbody.BlockInfo_endTag + xmlbody.AdditionalInfo_endTag + xmlbody.DocumentState_endTag + xmlbody.FormDocument_endTag
-            const xml = json2xml(data2convert, {
-                compact: true, spaces: 4
-            })
             fs.outputFile(outputPath, fullxml)
             resolve({
                 status: 'exported',
