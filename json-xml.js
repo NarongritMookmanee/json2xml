@@ -14,8 +14,8 @@ const setBlockRef_template = (field, runningNo, content) => {
     }
     return (`<_${field} addData:BlockRef="${runningNo}" addData:SuspiciousSymbols="${symbols}">${content}</_${field}>`)
 }
-const setBlockInfo_template = (id, pageIndex, left, right, top, bottom) => {
-    return `<addData:Blocks Id="${id}"><addData:Block PageIndex="${pageIndex}"><addData:Rect Left="${left}" Right="${right}" Top="${top}" Bottom="${bottom}"/></addData:Block></addData:Blocks>`
+const setBlockInfo_template = (id, pageIndex, left, right, top, bottom, confidenceValue) => {
+    return `<addData:Blocks Id="${id}"><addData:Block PageIndex="${pageIndex}"><addData:Rect Left="${left}" Right="${right}" Top="${top}" Bottom="${bottom}"/><addData:Confidence Value="${confidenceValue}"/></addData:Block></addData:Blocks>`
 }
 const xmlbody = {
     Header: `<?xml version="1.0" encoding="UTF-8"?>`,
@@ -109,7 +109,8 @@ async function convertJson2Xml(inputPath, outputPath, dpi = 200) {
                     Math.floor(element[resultJsonHeaderField[index]].boundingRegions[0].polygon[0] * dpi),
                     Math.floor(element[resultJsonHeaderField[index]].boundingRegions[0].polygon[2] * dpi),
                     Math.floor(element[resultJsonHeaderField[index]].boundingRegions[0].polygon[1] * dpi),
-                    Math.floor(element[resultJsonHeaderField[index]].boundingRegions[0].polygon[5] * dpi)
+                    Math.floor(element[resultJsonHeaderField[index]].boundingRegions[0].polygon[5] * dpi),
+                    element[resultJsonHeaderField[index]].confidence
                 ))
             })
             fullxml = xmlbody.Header + xmlbody.FormDocument + xmlbody.DocumentState
