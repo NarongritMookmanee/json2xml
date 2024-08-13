@@ -75,13 +75,18 @@ async function convertJson2Xml(inputPath, outputPath, dpi = 200) {
         try {
             json = fs.readJsonSync(inputPath)
             try {
+                let keys = Object.keys(json.analyzeResult.documents[0].fields)
                 data2convert = json.analyzeResult.documents[0].fields
+                if(keys.includes('Table')){
+                    const data2convert_table = json.analyzeResult.documents[0].fields.Table.valueArray[0].valueObject
+                    Object.assign(data2convert, data2convert_table)
+                    // console.log(data2convert)
+                }
             }
             catch (error) {
                 data2convert = json.analyzeResult.paragraphs
             }
             data2convert = JSON.stringify(data2convert).replaceAll("&", "&amp;").replaceAll(">", "&gt;").replaceAll("<", "&lt;")
-            console.log(data2convert)
             data2convert = JSON.parse(data2convert)
             filename.basename = path.basename(inputPath)
             filename.splitBasename = filename.basename.split('_')
